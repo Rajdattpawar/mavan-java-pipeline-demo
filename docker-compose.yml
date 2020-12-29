@@ -1,0 +1,6 @@
+version: "2"
+services:
+   maven:
+     image: "jenkinsmeetup/$IMAGE:$TAG"
+     container_name: maven-java-app
+
