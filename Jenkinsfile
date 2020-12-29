@@ -13,7 +13,7 @@ pipeline {
             steps {
                 sh '''
                    cd java-app/ && mvn -B -DskipTests clean package
-                   docker build -t $Image:$BUILD_ID . 
+                   cd ../ && docker build -t $Image:$BUILD_ID . 
                 '''
             }
 
