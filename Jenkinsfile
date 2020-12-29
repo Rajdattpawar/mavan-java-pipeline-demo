@@ -11,40 +11,30 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                    ./jenkins/build/mvn.sh mvn -B -DskipTests clean package
-                    ./jenkins/build/build.sh
+                    
+                    echo 'build steps'
 
                 '''
             }
 
-            post {
-                success {
-                   archiveArtifacts artifacts: 'java-app/target/*.jar', fingerprint: true
-                }
-            }
         }
 
         stage('Test') {
             steps {
-                sh './jenkins/test/mvn.sh mvn test'
+                sh 'echo "Test"'
             }
 
-            post {
-                always {
-                    junit 'java-app/target/surefire-reports/*.xml'
-                }
-            }
         }
 
         stage('Push') {
             steps {
-                sh './jenkins/push/push.sh'
+                sh 'echo "Push Image"'
             }
         }
 
         stage('Deploy') {
             steps {
-                sh './jenkins/deploy/deploy.sh'
+                sh 'echo "Deploy"'
             }
         }
     }
