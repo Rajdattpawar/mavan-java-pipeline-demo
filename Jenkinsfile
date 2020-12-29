@@ -4,6 +4,7 @@ pipeline {
     
     environment {
         PASS = credentials('dockerhub-cred') 
+        Image ='java-maven-demo'
     }
 
     stages {
@@ -11,9 +12,8 @@ pipeline {
         stage('Build') {
             steps {
                 sh '''
-                    
-                    echo 'build steps'
-
+                   cd java-app/ && mvn -B -DskipTests clean package
+                   docker build -t $Image:$BUILD_ID . 
                 '''
             }
 
