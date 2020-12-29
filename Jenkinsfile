@@ -16,12 +16,23 @@ pipeline {
                    cd ../ && docker build -t $Image:$BUILD_ID . 
                 '''
             }
+            post {
+		success {
+                  archiveArtifacts artifacts: 'java-app/target/*.jar', fingerprint: true
+                }
+            }
 
         }
 
         stage('Test') {
             steps {
                 sh 'cd java-app/ && mvn test'
+            }
+
+            post {
+                 always {
+                        junit 'java-app/target/surefire-reports/*.xml'
+                 }
             }
 
         }
