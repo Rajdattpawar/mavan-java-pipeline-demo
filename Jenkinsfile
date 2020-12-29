@@ -21,7 +21,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'echo "Test"'
+                sh 'cd java-app/ && mvn test'
             }
 
         }
