@@ -28,7 +28,11 @@ pipeline {
 
         stage('Push') {
             steps {
-                sh 'echo "Push Image"'
+                sh '''
+	          docker login -u jenkinsmeetup -p $PASS
+                  docker tag  $Image:$BUILD_ID jenkinsmeetup/$Image:$BUILD_ID
+                  docker push jenkinsmeetup/$Image:$BUILD_ID
+                '''
             }
         }
 
