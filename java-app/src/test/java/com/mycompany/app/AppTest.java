@@ -34,9 +34,9 @@ public class AppTest
     {
         App.main(null);
         try {
-            assertEquals("Hello World Pipeline" + System.getProperty("line.separator"), outContent.toString());
+            assertEquals("Hello World from Pipeline again" + System.getProperty("line.separator"), outContent.toString());
         } catch (AssertionError e) {
-            fail("\"message\" is not \"Hello World From Pipeline!\"");
+            fail("\"message\" is not \"Hello World from Pipeline again!\"");
         }
     }
 
